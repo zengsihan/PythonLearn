@@ -56,7 +56,7 @@ for i in range(num): # 默认下载整个歌单，也可以设置下载的个数
         urllib.request.urlretrieve(link, folderName+'\\' + name)  # 提前要创建文件夹，在此文件目录下创建“name”文件
         print(name + ' 下载完成')
 num=num-number
-print('歌单 【'+songListName+'】 已下载完了,一共下载了 '+str(num)+' 首歌曲。 '+str(number)+' 首歌曲限制免费下载。')
+print('歌单 【'+songListName+'】 已下载完了,一共下载了 '+str(num)+' 首歌曲。 '+str(number)+' 首歌曲限制下载。')
 
 
 
