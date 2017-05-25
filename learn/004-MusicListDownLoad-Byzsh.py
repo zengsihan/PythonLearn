@@ -8,13 +8,7 @@ import urllib.request
 import urllib
 import os
 
-#获取网页
-def gethtml(url, headers={}):
-    req = urllib.request.Request(url, headers=headers)
-    response = urllib.request.urlopen(req)
-    content = response.read().decode('utf-8')
-    response.close()
-    return content
+
 
 #解析音乐列表网页
 def parsehtmlMusicList(html):
@@ -26,9 +20,17 @@ def parsehtmlMusicList(html):
     while n < length:
         f=open(filename,'a') # 以追加模式打开文件，不存在则创建。
         f.write('歌单地址：'+list_nameUrl[n]['href']+'\n')
-        print('歌单名称：'+list_nameUrl[n]['title']+'\n歌单地址：'+list_nameUrl[n]['href'])
+        print('歌单名称：'+list_nameUrl[n]['title']+'\n歌单地址：'+list_nameUrl[n]['href']+'\n')
         # print('歌单播放量：'+list_num[n].text+'\n\n')
         n += 1
+
+# 获取网页
+def gethtml(url, headers={}):
+    req = urllib.request.Request(url, headers=headers)
+    response = urllib.request.urlopen(req)
+    content = response.read().decode('utf-8')
+    response.close()
+    return content
 
 #创建新文件
 def file_create():
@@ -41,6 +43,11 @@ def file_create():
     return filename
 
 filename=file_create()
+url = 'http://music.163.com/discover/playlist'
+gethtml(url, headers={
+    'User-Agent': 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)',
+    'Host': 'music.163.com'
+})
 
 url = 'http://music.163.com/discover/playlist'
 url = gethtml(url, headers={
@@ -49,3 +56,11 @@ url = gethtml(url, headers={
 })
 
 parsehtmlMusicList(url)
+
+
+
+
+
+
+
+

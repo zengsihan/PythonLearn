@@ -17,7 +17,7 @@ import requests
 import urllib.request,urllib.error
 import os
 
-id="709872623" # 歌单的ID
+id="640006772" # 歌单的ID
 r = requests.get('http://music.163.com/api/playlist/detail?id='+id) # 去请求数据，返回 json 数据
 
 arr = r.json()['result']['tracks']      # 歌曲的信息在 /result/tracks 中
@@ -40,7 +40,12 @@ for i in range(num): # 默认下载整个歌单，也可以设置下载的个数
     link = arr[i]['mp3Url'] # 歌曲的下载链接
 
     try:
-        response=urllib.request.urlopen(link) # 去加载歌曲下载的连接，得到返回的数据
+        if link is None:
+            print("没有mp3Url")
+            number += 1
+            continue
+        else:
+            response=urllib.request.urlopen(link) # 去加载歌曲下载的连接，得到返回的数据
     except urllib.error.HTTPError as e: # 异常处理
         if e.code != 200: # 404之类的
             number+=1
