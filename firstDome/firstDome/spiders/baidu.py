@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# !/usr/bin/python
+# -*- coding: UTF-8 -*-
+
 import scrapy
 
 #从核心目录firstdemo定位到items.py文件里的FirstdemoItem函数
